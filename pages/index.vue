@@ -18,5 +18,5 @@
 	</div>
 </template>
 <script setup>
-	const url = process.dev ? 'http://localhost:3000' : 'https://rx-gamma.vercel.app'
+	const url = computed(() => window?.location?.origin ?? '')
 </script>
