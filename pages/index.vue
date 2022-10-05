@@ -2,18 +2,21 @@
 	<div>
 		Without Trailing slash:
 		<ul>
-			<li><a href="https://rx-gamma.vercel.app">https://rx-gamma.vercel.app</a> Works</li>
-			<li><a href="https://rx-gamma.vercel.app?foo=bar">https://rx-gamma.vercel.app?foo=bar</a> Works</li>
-			<li style="color:red;"><a href="https://rx-gamma.vercel.app?foo=bar+x">https://rx-gamma.vercel.app?foo=bar+x</a> Doesn't Work</li>
+			<li><a :href="url">{{url}}</a> Works</li>
+			<li><a :href="`${url}?foo=bar`">{{url}}?foo=bar</a> Works</li>
+			<li style="color:red;"><a :href="`${url}?foo=bar+x`">{{url}}?foo=bar+x</a> Doesn't Work</li>
 		</ul>
 
 		With Trailing slash:
 		<ul>
-			<li><a href="https://rx-gamma.vercel.app/">https://rx-gamma.vercel.app/</a> Works</li>
-			<li><a href="https://rx-gamma.vercel.app/?foo=bar">https://rx-gamma.vercel.app/?foo=bar</a> Works</li>
-			<li style="color:red;"><a href="https://rx-gamma.vercel.app/?foo=bar+x">https://rx-gamma.vercel.app/?foo=bar+x</a> Doesn't Work</li>
+			<li><a :href="`${url}/`">{{url}}/</a> Works</li>
+			<li><a :href="`${url}/?foo=bar`">{{url}}/?foo=bar</a> Works</li>
+			<li style="color:red;"><a :href="`${url}/?foo=bar+x`">{{url}}/?foo=bar+x</a> Doesn't Work</li>
 		</ul>
 
 		<p> The issue is in the + sign (I think)</p>
 	</div>
 </template>
+<script setup>
+	const url = process.dev ? 'http://localhost:3000' : 'https://rx-gamma.vercel.app'
+</script>
